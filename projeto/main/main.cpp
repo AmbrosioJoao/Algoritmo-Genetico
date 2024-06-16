@@ -13,13 +13,15 @@ int main()
     float c_ideal = -0.5;
     float d_ideal = 0.4;
 
-    float a_variavel= -10; //Fatores que irão variar
-    float b_variavel= -10;
-    float c_variavel= -10;
-    float d_variavel= -10;
+    float a_variavel= -5; //Fatores que irão variar
+    float b_variavel= -5;
+    float c_variavel= -5;
+    float d_variavel= -5;
 
-    int n = 100; //Número de Amostras
+    int n = 160; //Número de Amostras
     float RMSE; //Erro médio quadrático
+
+    char geracao[15];
 
     FILE *file; //Ponteiro apontando para o arquivo
     errno_t err; //Variavel compativel com fopen_s
@@ -33,18 +35,30 @@ int main()
         exit(1);
     }
 
+  
     //Essa variável x seria a faixa de valores do eixo.
-    for (int x = -50 ; x < 50; x++) {
-
-        //RMSE
-        RMSE = sqrt(pow(a_ideal + b_ideal * x + c_ideal * pow(x, 2) + d_ideal * pow(x, 3) -
-        a_variavel - b_variavel * x - c_variavel * pow(x, 2) - d_variavel * pow(x, 3), 2)/n);
+    for (int x = -80 ; x < 80; x++) {
 
 
-        for (int i = 0; i < 100; i++) { 
+        fprintf(file, "Geração %d\n", x + 81);//escrever string
+   
+        for (int i = 0; i < 160; i++) { 
 
+
+            RMSE = sqrt(pow(a_ideal + b_ideal * x + c_ideal * pow(x, 2) + d_ideal * pow(x, 3) -
+            a_variavel - b_variavel * x - c_variavel * pow(x, 2) - d_variavel * pow(x, 3), 2) / n);
+
+            fprintf(file, "%d RMSE: %f \n",i+1,RMSE); //escreve teste no arquivo
+            
+            a_variavel + 0.1; //Incrementa os valores
+            b_variavel + 0.1;
+            c_variavel + 0.1;
+            d_variavel + 0.1;
         }
-
+        a_variavel = 0; //Reseta os valores para a próxima geracao
+        b_variavel = 0;
+        c_variavel = 0;
+        d_variavel = 0;
 
     }
 
