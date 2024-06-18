@@ -30,7 +30,7 @@ int main()
 
 
     if (err != 0) {
-        printf("Erro na abertura\n");
+        printf("Erro na abertura\n"); 
         system("pause");
         exit(1);
     }
@@ -55,10 +55,10 @@ int main()
             c_variavel + 0.1;
             d_variavel + 0.1;
         }
-        a_variavel = 0; //Reseta os valores para a próxima geracao
-        b_variavel = 0;
-        c_variavel = 0;
-        d_variavel = 0;
+        a_variavel = -5; //Reseta os valores para a próxima geracao
+        b_variavel = -5;
+        c_variavel = -5;
+        d_variavel = -5;
 
     }
 
